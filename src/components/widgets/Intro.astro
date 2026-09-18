@@ -1,15 +1,18 @@
 ---
 import { portfolio } from '@/data/portfolio'
+import About from '@/components/widgets/About.astro'
 ---
 
 <section class="intro">
   <h1>{portfolio.name}</h1>
   <p class="headline">{portfolio.headline}</p>
+  <p class="school">{portfolio.school.name} · {portfolio.school.year} · {portfolio.school.gpa}</p>
   <p class="links">
     <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
     <a href={portfolio.resumePath}>Resume</a>
     <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub</a>
   </p>
+  <About />
 </section>
 
 <style>
@@ -25,7 +28,13 @@ import { portfolio } from '@/data/portfolio'
   }
 
   .headline {
-    margin: 0.25rem 0 0.75rem;
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .school {
+    margin: 0.15rem 0 0.75rem;
     color: var(--text-secondary);
     line-height: 1.5;
   }
@@ -44,5 +53,19 @@ import { portfolio } from '@/data/portfolio'
 
   .links a:hover {
     color: var(--text-secondary);
+  }
+
+  .intro :global(.about) {
+    margin: 1.15rem 0 0;
+  }
+
+  .intro :global(.about p) {
+    margin: 0 0 0.75rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+
+  .intro :global(.about p:last-child) {
+    margin-bottom: 0;
   }
 </style>

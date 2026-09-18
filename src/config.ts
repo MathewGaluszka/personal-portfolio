@@ -12,7 +12,7 @@ export const themeConfig: ThemeConfig = {
 
   // GENERAL SETTINGS ////////////////////////////////////////////////////////////////////////////////////
   general: {
-    contentWidth: '35rem',
+    contentWidth: '42rem',
     centeredLayout: true,
     themeToggle: false,
     postListDottedDivider: false,

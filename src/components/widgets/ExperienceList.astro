@@ -1,15 +1,22 @@
 ---
-import { portfolio } from '@/data/portfolio'
+import type { ExperienceListProps } from '@/types'
+import PreviewCard from '@/components/widgets/PreviewCard.astro'
+
+const { jobs } = Astro.props as ExperienceListProps
 ---
 
 <section class="section">
   <h2>Work experience</h2>
   <ul>
     {
-      portfolio.experience.map((item) => (
+      jobs.map((job) => (
         <li>
-          <p class="title">{item.title}</p>
-          <p class="detail">{item.detail}</p>
+          <PreviewCard
+            href={`/work/${job.id}/`}
+            title={job.data.title}
+            subtitle={`${job.data.company} · ${job.data.dates}`}
+            image={job.data.image}
+          />
         </li>
       ))
     }
@@ -31,18 +38,24 @@ import { portfolio } from '@/data/portfolio'
     padding: 0;
     margin: 0;
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.35rem 1rem;
   }
 
-  .title {
-    margin: 0;
+  @media (max-width: 40rem) {
+    ul {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .detail {
-    margin: 0.15rem 0 0;
-    color: var(--text-secondary);
-    line-height: 1.5;
+  @media (hover: hover) and (pointer: fine) {
+    ul:hover :global(.preview-card) {
+      opacity: 0.4;
+    }
+
+    ul:hover :global(.preview-card:hover) {
+      opacity: 1;
+    }
   }
 </style>

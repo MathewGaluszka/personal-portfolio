@@ -16,3 +16,20 @@ export async function getSortedFilteredPosts() {
     return a.data.title.localeCompare(b.data.title)
   })
 }
+
+export async function getFilteredWork() {
+  const jobs = await getCollection('work')
+  return jobs.filter((job: CollectionEntry<'work'>) => !job.id.startsWith('_'))
+}
+
+export async function getSortedFilteredWork() {
+  const jobs = await getFilteredWork()
+  return jobs.sort((a: CollectionEntry<'work'>, b: CollectionEntry<'work'>) => {
+    const orderA = a.data.order ?? Number.MAX_SAFE_INTEGER
+    const orderB = b.data.order ?? Number.MAX_SAFE_INTEGER
+    if (orderA !== orderB) {
+      return orderA - orderB
+    }
+    return a.data.title.localeCompare(b.data.title)
+  })
+}

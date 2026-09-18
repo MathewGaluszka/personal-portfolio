@@ -1,0 +1,34 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import PostLayout from '@/layouts/PostLayout.astro'
+import { render } from 'astro:content'
+
+export async function getStaticPaths() {
+  const jobs = await getCollection('work')
+  return jobs
+    .filter((job) => !job.id.startsWith('_'))
+    .map((job) => ({
+      params: { slug: job.id },
+      props: job
+    }))
+}
+
+type Props = CollectionEntry<'work'>
+
+const job = Astro.props
+const { Content, remarkPluginFrontmatter } = await render(job)
+
+const readingTime = remarkPluginFrontmatter.readingTime
+const toc = remarkPluginFrontmatter.toc || []
+const contentFeatures = remarkPluginFrontmatter.contentFeatures || {}
+---
+
+<PostLayout
+  {...job.data}
+  subtitle={`${job.data.company} · ${job.data.dates}`}
+  readingTime={readingTime}
+  toc={toc}
+  contentFeatures={contentFeatures}
+>
+  <Content />
+</PostLayout>

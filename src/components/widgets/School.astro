@@ -5,8 +5,7 @@ import { portfolio } from '@/data/portfolio'
 <section class="section">
   <h2>School</h2>
   <p class="name">{portfolio.school.name}</p>
-  <p>{portfolio.school.program}</p>
-  <p class="note">{portfolio.school.note}</p>
+  <p>{portfolio.school.year} · {portfolio.school.gpa}</p>
 </section>
 
 <style>
@@ -27,10 +26,5 @@ import { portfolio } from '@/data/portfolio'
 
   .name {
     font-weight: var(--font-weight-bold);
-  }
-
-  .note {
-    color: var(--text-secondary);
-    margin-top: 0.25rem;
   }
 </style>

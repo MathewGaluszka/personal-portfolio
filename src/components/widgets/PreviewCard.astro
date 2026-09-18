@@ -1,0 +1,57 @@
+---
+interface Props {
+  href: string
+  title: string
+  image?: string
+  subtitle?: string
+}
+
+const { href, title, image, subtitle } = Astro.props
+---
+
+<a href={href} class="preview-card">
+  <p class="title">{title}</p>
+  {subtitle && <p class="subtitle">{subtitle}</p>}
+  {
+    image ? (
+      <img class="media" src={image} alt="" />
+    ) : (
+      <div class="media placeholder" aria-hidden="true" />
+    )
+  }
+</a>
+
+<style>
+  .preview-card {
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: opacity 0.15s ease-out;
+  }
+
+  .title {
+    margin: 0;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
+  }
+
+  .subtitle {
+    margin: 0.2rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-top: 0.55rem;
+    object-fit: cover;
+    background: var(--code-bg);
+  }
+
+  .placeholder {
+    background: var(--code-bg);
+  }
+</style>

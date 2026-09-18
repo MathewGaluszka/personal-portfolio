@@ -1,5 +1,6 @@
 ---
 import type { PostListProps } from '@/types'
+import PreviewCard from '@/components/widgets/PreviewCard.astro'
 
 const { posts } = Astro.props as PostListProps
 ---
@@ -10,9 +11,7 @@ const { posts } = Astro.props as PostListProps
     {
       posts.map((post) => (
         <li>
-          <a href={`/${post.id}/`}>
-            <p class="title">{post.data.title}</p>
-          </a>
+          <PreviewCard href={`/${post.id}/`} title={post.data.title} image={post.data.image} />
         </li>
       ))
     }
@@ -25,7 +24,7 @@ const { posts } = Astro.props as PostListProps
   }
 
   h2 {
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.75rem;
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-bold);
   }
@@ -34,35 +33,24 @@ const { posts } = Astro.props as PostListProps
     padding: 0;
     margin: 0;
     list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.35rem 1rem;
   }
 
-  a {
-    color: var(--text-primary);
-    display: block;
-    text-decoration: none;
-    transition: opacity 0.15s ease-out;
+  @media (max-width: 40rem) {
+    ul {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (hover: hover) and (pointer: fine) {
-    ul:hover a {
+    ul:hover :global(.preview-card) {
       opacity: 0.4;
     }
 
-    ul:hover a:hover {
+    ul:hover :global(.preview-card:hover) {
       opacity: 1;
     }
-  }
-
-  .title {
-    margin: 0;
-    height: 2.75rem;
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 </style>

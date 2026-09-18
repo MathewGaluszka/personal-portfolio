@@ -30,3 +30,7 @@ export interface ContentFeatures {
 export interface PostListProps {
   posts: CollectionEntry<'posts'>[]
 }
+
+export interface ExperienceListProps {
+  jobs: CollectionEntry<'work'>[]
+}
