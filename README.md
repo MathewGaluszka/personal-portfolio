@@ -1,8 +1,8 @@
 # Mathew Galuszka — Personal Portfolio
 
-Personal site for **Mathew Galuszka**, a mechatronics / biomedical engineering student. It is based on [Yuji Sato's React portfolio template](https://github.com/yujisatojr/react-portfolio-template) (MIT). The homepage keeps that layout; project cards open pages inside this site instead of leaving to another website.
+Personal site for **Mathew Galuszka**, a mechatronics / biomedical engineering student. The visual theme is [Chiri](https://github.com/the3ash/astro-chiri) (MIT), reshaped from a blog into a homepage with skills, school, projects, and work experience. Project titles open internal pages. Dates are not shown.
 
-This first version uses placeholder project writeups, skills chips, timeline entries, and a placeholder resume PDF. Swap those when the real copy and files are ready. Dark mode is the only theme.
+This first version uses placeholder school, skills, work, and project writeups. Swap those when the real copy is ready. Light and dark follow the system setting; there is no theme toggle.
 
 ## Run locally on Windows
 
@@ -12,47 +12,49 @@ After this project has a GitHub remote:
 cd C:\
 git clone <your-private-repo-url> PersonalPortfolio
 cd C:\PersonalPortfolio
-npm install
-npm start
+pnpm install
+pnpm dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Then open the local URL printed in the terminal (usually [http://localhost:4321](http://localhost:4321)).
 
-Requirements: [Node.js](https://nodejs.org/) 18 or newer.
+Requirements: [Node.js](https://nodejs.org/) 18 or newer, and [pnpm](https://pnpm.io/).
+
+```bat
+npm install -g pnpm
+```
 
 ## What is on the site
 
-- Hero with LinkedIn, Resume, and GitHub above the name
-- Skills in three groups: Electrical, Software, Mechanical
-- History timeline (placeholder rows)
-- Four project pages:
-  - `/projects/jukebox-robot-arm`
-  - `/projects/smarthome-stained-glass-lamp`
-  - `/projects/pace-plus-plus`
-  - `/projects/walk-n-roll`
-- Contact form that opens a mail draft to `mgaluszka23@gmail.com`
+- Name, headline, and text links: LinkedIn, Resume, GitHub
+- Skills: Electrical, Software, Mechanical
+- School (placeholder)
+- Projects that open their own pages:
+  - `/jukebox-robot-arm`
+  - `/smarthome-stained-glass-lamp`
+  - `/pace-plus-plus`
+  - `/walk-n-roll`
+- Work experience (placeholder rows)
 
 ## Where to edit content
 
 | What | File |
 | --- | --- |
-| Name, headline, email, LinkedIn, GitHub | `src/data/site.ts` |
-| Project titles, summaries, writeups, demo/GitHub URLs | `src/data/projects.ts` |
-| Skills chips | `src/components/Expertise.tsx` |
-| Timeline | `src/components/Timeline.tsx` |
+| Name, headline, links, skills, school, work | `src/data/portfolio.ts` |
+| Site title and theme options | `src/config.ts` |
+| Project pages | `src/content/posts/` |
 | Resume PDF | replace `public/resume.pdf` |
-| Photo | replace `public/avatar.svg` (or point `src/components/Main.tsx` at a photo) |
 
-Adding a fifth project is a new object in `src/data/projects.ts`. Optional `liveUrl` and `githubUrl` fields show buttons on that project's page.
+Adding a fifth project is a new markdown file in `src/content/posts/` with `title` and `order`.
 
 ## Scripts
 
 ```bash
-npm start    # development server
-npm test     # unit tests
-npm run build
+pnpm dev      # development server
+pnpm build    # production build
+pnpm preview  # serve the build
 ```
 
 ## License
 
-Template code is MIT, copyright Yuji Sato. See `LICENSE`.
+Chiri theme code is MIT. See `LICENSE`.

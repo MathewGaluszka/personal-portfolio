@@ -1,0 +1,22 @@
+---
+import IndexLayout from '@/layouts/IndexLayout.astro'
+import Intro from '@/components/widgets/Intro.astro'
+import Skills from '@/components/widgets/Skills.astro'
+import School from '@/components/widgets/School.astro'
+import PostList from '@/components/widgets/PostList.astro'
+import ExperienceList from '@/components/widgets/ExperienceList.astro'
+import { themeConfig } from '@/config'
+import { getSortedFilteredPosts } from '@/utils/draft'
+
+const posts = await getSortedFilteredPosts()
+---
+
+<IndexLayout title={themeConfig.site.title} description={themeConfig.site.description}>
+  <Intro />
+  <Skills />
+  <School />
+  <main>
+    <PostList posts={posts} />
+    <ExperienceList />
+  </main>
+</IndexLayout>

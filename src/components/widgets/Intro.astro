@@ -1,0 +1,48 @@
+---
+import { portfolio } from '@/data/portfolio'
+---
+
+<section class="intro">
+  <h1>{portfolio.name}</h1>
+  <p class="headline">{portfolio.headline}</p>
+  <p class="links">
+    <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href={portfolio.resumePath}>Resume</a>
+    <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub</a>
+  </p>
+</section>
+
+<style>
+  .intro {
+    margin-bottom: 2.5rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.5;
+  }
+
+  .headline {
+    margin: 0.25rem 0 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .links {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+
+  .links a {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: var(--text-secondary);
+  }
+</style>

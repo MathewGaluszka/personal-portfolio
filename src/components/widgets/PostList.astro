@@ -1,0 +1,68 @@
+---
+import type { PostListProps } from '@/types'
+
+const { posts } = Astro.props as PostListProps
+---
+
+<section class="section">
+  <h2>Projects</h2>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/${post.id}/`}>
+            <p class="title">{post.data.title}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .section {
+    margin: 2.25rem 0 0;
+  }
+
+  h2 {
+    margin: 0 0 0.35rem;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  a {
+    color: var(--text-primary);
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.15s ease-out;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    ul:hover a {
+      opacity: 0.4;
+    }
+
+    ul:hover a:hover {
+      opacity: 1;
+    }
+  }
+
+  .title {
+    margin: 0;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import { portfolio } from '@/data/portfolio'
+---
+
+<section class="section">
+  <h2>School</h2>
+  <p class="name">{portfolio.school.name}</p>
+  <p>{portfolio.school.program}</p>
+  <p class="note">{portfolio.school.note}</p>
+</section>
+
+<style>
+  .section {
+    margin: 2.25rem 0 0;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .name {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .note {
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+  }
+</style>

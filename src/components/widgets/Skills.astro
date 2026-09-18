@@ -1,0 +1,54 @@
+---
+import { portfolio } from '@/data/portfolio'
+---
+
+<section class="section">
+  <h2>Skills</h2>
+  <p class="note">Three pillars from a mechatronics degree. Labels are placeholders.</p>
+  <div class="pillars">
+    <div>
+      <h3>Electrical</h3>
+      <p>{portfolio.skills.electrical.join(', ')}</p>
+    </div>
+    <div>
+      <h3>Software</h3>
+      <p>{portfolio.skills.software.join(', ')}</p>
+    </div>
+    <div>
+      <h3>Mechanical</h3>
+      <p>{portfolio.skills.mechanical.join(', ')}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section {
+    margin: 2.25rem 0 0;
+  }
+
+  h2,
+  h3 {
+    margin: 0;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    margin: 0.85rem 0 0.2rem;
+  }
+
+  .note,
+  p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .pillars p {
+    color: var(--text-primary);
+  }
+</style>
