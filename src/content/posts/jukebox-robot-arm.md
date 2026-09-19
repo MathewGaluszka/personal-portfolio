@@ -1,6 +1,7 @@
 ---
-title: 'Jukebox Robot Arm'
+title: Jukebox Robot Arm
 order: 1
+image: /images/jukeboxrobotarm.jpg
 ---
 
 A mechatronics build that combines mechanical motion, electronics, and control software to play music like a jukebox.

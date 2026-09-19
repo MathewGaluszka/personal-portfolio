@@ -1,6 +1,7 @@
 ---
-title: 'PacePlusPlus'
+title: Pace++
 order: 3
+image: /images/paceplusplus.png
 ---
 
 A software project whose details, stack, and outcomes will be filled in here.

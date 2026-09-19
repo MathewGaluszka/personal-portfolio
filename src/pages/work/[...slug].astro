@@ -25,7 +25,8 @@ const contentFeatures = remarkPluginFrontmatter.contentFeatures || {}
 
 <PostLayout
   {...job.data}
-  subtitle={`${job.data.company} · ${job.data.dates}`}
+  subtitle={`${job.data.company}`}
+  dates={job.data.dates}
   readingTime={readingTime}
   toc={toc}
   contentFeatures={contentFeatures}

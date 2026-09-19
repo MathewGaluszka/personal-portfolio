@@ -1,6 +1,7 @@
 ---
-title: 'Walk N’Roll'
+title: Walk N’Roll
 order: 4
+image: /images/walknroll.jpeg
 ---
 
 A mechatronics / biomedical project whose mechanical, electrical, and software pieces will be documented here.

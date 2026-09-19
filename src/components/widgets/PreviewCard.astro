@@ -4,14 +4,16 @@ interface Props {
   title: string
   image?: string
   subtitle?: string
+  detail?: string
 }
 
-const { href, title, image, subtitle } = Astro.props
+const { href, title, image, subtitle, detail } = Astro.props
 ---
 
 <a href={href} class="preview-card">
   <p class="title">{title}</p>
   {subtitle && <p class="subtitle">{subtitle}</p>}
+  {detail && <p class="detail">{detail}</p>}
   {
     image ? (
       <img class="media" src={image} alt="" />
@@ -38,6 +40,12 @@ const { href, title, image, subtitle } = Astro.props
 
   .subtitle {
     margin: 0.2rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .detail {
+    margin: 0.05rem 0 0;
     color: var(--text-secondary);
     line-height: 1.4;
   }

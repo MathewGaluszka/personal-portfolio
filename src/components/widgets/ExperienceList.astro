@@ -14,7 +14,8 @@ const { jobs } = Astro.props as ExperienceListProps
           <PreviewCard
             href={`/work/${job.id}/`}
             title={job.data.title}
-            subtitle={`${job.data.company} · ${job.data.dates}`}
+            subtitle={job.data.company}
+            detail={job.data.dates}
             image={job.data.image}
           />
         </li>

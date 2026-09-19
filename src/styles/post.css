@@ -30,6 +30,10 @@
   line-height: 1.5;
 }
 
+.prose .title .dates {
+  margin-top: 0.15rem;
+}
+
 /* Headings (h1-h5)
  Adjust size or spacing below if needed. */
 .prose h1,

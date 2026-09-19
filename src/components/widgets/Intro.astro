@@ -8,8 +8,16 @@ import About from '@/components/widgets/About.astro'
   <p class="headline">{portfolio.headline}</p>
   <p class="school">{portfolio.school.name} · {portfolio.school.year} · {portfolio.school.gpa}</p>
   <p class="links">
-    <a href={portfolio.resumePath}>Resume</a>
-    <a href={`mailto:${portfolio.email}`}>Email</a>
+    <a href={portfolio.resumePath} target="_blank" rel="noreferrer">Resume</a>
+    <a
+      class="email-link"
+      href={`mailto:${portfolio.email}`}
+      data-email={portfolio.email}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Email
+    </a>
     <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
     <a href={portfolio.github} target="_blank" rel="noreferrer">Github</a>
   </p>
@@ -70,3 +78,54 @@ import About from '@/components/widgets/About.astro'
     margin-bottom: 0;
   }
 </style>
+
+<script>
+  async function copyEmail(email: string) {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email)
+        return
+      }
+    } catch {
+      // Fall through to execCommand if the clipboard API is blocked.
+    }
+
+    const input = document.createElement('textarea')
+    input.value = email
+    input.setAttribute('readonly', '')
+    input.style.position = 'fixed'
+    input.style.left = '-9999px'
+    document.body.appendChild(input)
+    input.select()
+    const copied = document.execCommand('copy')
+    input.remove()
+    if (!copied) throw new Error('Copy failed')
+  }
+
+  function bindEmailLink() {
+    const link = document.querySelector<HTMLAnchorElement>('.email-link')
+    if (!link || link.dataset.bound === 'true') return
+    link.dataset.bound = 'true'
+
+    link.addEventListener('click', async (event) => {
+      event.preventDefault()
+      const email = link.dataset.email
+      if (!email) return
+
+      const original = link.textContent
+      try {
+        await copyEmail(email)
+        link.textContent = 'Copied'
+      } catch {
+        link.textContent = email
+      }
+
+      window.setTimeout(() => {
+        link.textContent = original
+      }, 1600)
+    })
+  }
+
+  bindEmailLink()
+  document.addEventListener('astro:page-load', bindEmailLink)
+</script>

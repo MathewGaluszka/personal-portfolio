@@ -1,6 +1,7 @@
 ---
-title: 'SmartHome Stained Glass Lamp'
+title: SmartHome Stained Glass Lamp
 order: 2
+image: /images/stainedglasslamp.jpeg
 ---
 
 A stained-glass lamp with smart-home controls, blending craft, lighting, and embedded software.
