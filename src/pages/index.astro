@@ -12,8 +12,137 @@ const jobs = await getSortedFilteredWork()
 ---
 
 <IndexLayout title={themeConfig.site.title} description={themeConfig.site.description}>
-  <Intro />
-  <PostList posts={posts} />
-  <ExperienceList jobs={jobs} />
-  <Skills />
+  <div class="home-grid">
+    <div class="home-col">
+      <Intro />
+      <Skills />
+    </div>
+    <div class="home-col">
+      <PostList posts={posts} />
+      <ExperienceList jobs={jobs} />
+    </div>
+  </div>
 </IndexLayout>
+
+<style>
+  .home-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .home-col {
+    display: contents;
+  }
+
+  .home-grid :global(.intro) {
+    order: 1;
+  }
+
+  .home-grid :global(.projects) {
+    order: 2;
+  }
+
+  .home-grid :global(.work) {
+    order: 3;
+  }
+
+  .home-grid :global(.skills) {
+    order: 4;
+  }
+
+  .home-grid :global(.intro),
+  .home-grid :global(.section) {
+    margin: 0;
+    min-width: 0;
+  }
+
+  :global(html.home-wide) .home-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--home-stack-inner, 39rem);
+    column-gap: 2.5rem;
+    align-items: start;
+  }
+
+  :global(html.home-wide) .home-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    min-width: 0;
+  }
+
+  :global(html.home-wide) .home-grid :global(.intro),
+  :global(html.home-wide) .home-grid :global(.projects),
+  :global(html.home-wide) .home-grid :global(.work),
+  :global(html.home-wide) .home-grid :global(.skills) {
+    order: 0;
+  }
+</style>
+
+<script>
+  const WIDE_QUERY = '(min-width: 72rem)'
+  const DURATION_MS = 420
+  const EASING = 'cubic-bezier(0.22, 1, 0.36, 1)'
+  const PANEL_SELECTOR = '.intro, .projects, .work, .skills'
+
+  function isHome() {
+    return document.body.dataset.home === 'true'
+  }
+
+  function applyWide(wide: boolean) {
+    document.documentElement.classList.toggle('home-wide', wide && isHome())
+  }
+
+  function flipHomeLayout(wide: boolean) {
+    if (!isHome()) {
+      applyWide(false)
+      return
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const grid = document.querySelector('.home-grid')
+    const panels = grid ? [...grid.querySelectorAll(PANEL_SELECTOR)] : []
+
+    if (reduceMotion || panels.length === 0) {
+      applyWide(wide)
+      return
+    }
+
+    const first = panels.map((panel) => panel.getBoundingClientRect())
+    applyWide(wide)
+    const last = panels.map((panel) => panel.getBoundingClientRect())
+
+    panels.forEach((panel, index) => {
+      const from = first[index]
+      const to = last[index]
+      const dx = from.left - to.left
+      const dy = from.top - to.top
+
+      if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
+        return
+      }
+
+      panel.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }], {
+        duration: DURATION_MS,
+        easing: EASING
+      })
+    })
+  }
+
+  function syncHomeLayout(animate: boolean) {
+    const wide = window.matchMedia(WIDE_QUERY).matches
+    if (animate) {
+      flipHomeLayout(wide)
+    } else {
+      applyWide(wide && isHome())
+    }
+  }
+
+  function onPageLoad() {
+    syncHomeLayout(false)
+    window.matchMedia(WIDE_QUERY).onchange = () => syncHomeLayout(true)
+  }
+
+  onPageLoad()
+  document.addEventListener('astro:page-load', onPageLoad)
+</script>

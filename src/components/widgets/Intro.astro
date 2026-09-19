@@ -8,9 +8,10 @@ import About from '@/components/widgets/About.astro'
   <p class="headline">{portfolio.headline}</p>
   <p class="school">{portfolio.school.name} · {portfolio.school.year} · {portfolio.school.gpa}</p>
   <p class="links">
-    <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
     <a href={portfolio.resumePath}>Resume</a>
-    <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub</a>
+    <a href={`mailto:${portfolio.email}`}>Email</a>
+    <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href={portfolio.github} target="_blank" rel="noreferrer">Github</a>
   </p>
   <About />
 </section>

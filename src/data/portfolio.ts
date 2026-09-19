@@ -7,7 +7,7 @@ export const portfolio = {
   resumePath: '/resume.pdf',
   school: {
     name: 'McMaster University',
-    year: '5th year',
+    year: '5th Year',
     gpa: '3.8 cGPA'
   },
   skills: {

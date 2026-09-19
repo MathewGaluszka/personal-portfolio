@@ -7,7 +7,7 @@ import type { LayoutProps } from '@/types'
 
 type Props = LayoutProps
 
-const { type = 'page' } = Astro.props
+const { type = 'page', wide = false } = Astro.props
 const language = themeConfig.site.language || 'en-US'
 const contentWidth = themeConfig.general.contentWidth
 const fadeAnimation = themeConfig.general.fadeAnimation
@@ -24,8 +24,13 @@ const finalWidth = shouldUseCustomWidth ? `${widthValue}rem` : '25rem'
   </head>
   <body
     data-centered={themeConfig.general.centeredLayout}
+    data-home={wide ? 'true' : undefined}
     style={`
-      max-width: ${finalWidth};
+      ${
+        wide
+          ? `--home-narrow: ${finalWidth}; --home-wide: 68rem;`
+          : `max-width: ${finalWidth};`
+      }
       ${shouldUseCustomWidth ? `--content-width: ${widthValue}rem;` : ''}
     `}
   >
