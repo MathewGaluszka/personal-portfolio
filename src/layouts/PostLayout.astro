@@ -18,7 +18,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import { themeConfig } from '@/config'
 
-const { title, subtitle, dates, toc = [], contentFeatures = {} } = Astro.props as PostLayoutProps
+const { title, subtitle, dates, repo, toc = [], contentFeatures = {} } = Astro.props as PostLayoutProps
 
 const postSlug = Astro.url.pathname.split('/').filter(Boolean).pop() || ''
 const ogImage = `/open-graph/${postSlug}.png`
@@ -43,7 +43,16 @@ const shouldRenderLinkCard = themeConfig.post.linkCard && contentFeatures.hasLin
         <BackButton />
         {shouldRenderToc && <TableOfContents toc={toc} />}
         <div class="title">
-          <h1>{title}</h1>
+          <div class="title-row">
+            <h1>{title}</h1>
+            {
+              repo && (
+                <a class="title-repo" href={repo} target="_blank" rel="noreferrer">
+                  Github Repository
+                </a>
+              )
+            }
+          </div>
           {subtitle && <p class="subtitle">{subtitle}</p>}
           {dates && <p class="subtitle dates">{dates}</p>}
         </div>
@@ -75,3 +84,24 @@ const shouldRenderLinkCard = themeConfig.post.linkCard && contentFeatures.hasLin
     flex: 1;
   }
 </style>
+
+<script>
+  function reloadVideos() {
+    document.querySelectorAll('video').forEach((video) => {
+      const src = video.getAttribute('src')
+      if (!src) return
+      const stalled =
+        video.networkState === HTMLMediaElement.NETWORK_EMPTY ||
+        video.networkState === HTMLMediaElement.NETWORK_NO_SOURCE
+      if (stalled) {
+        video.src = ''
+        video.src = src
+        video.load()
+      }
+      if (video.autoplay) video.play().catch(() => {})
+    })
+  }
+
+  reloadVideos()
+  document.addEventListener('astro:page-load', reloadVideos)
+</script>

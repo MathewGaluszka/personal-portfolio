@@ -20,8 +20,23 @@
   margin-bottom: 2.5em;
 }
 
-.prose .title h1 {
+.prose .title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.25rem 1.25rem;
   margin: 0 0 0.375rem 0;
+}
+
+.prose .title h1 {
+  margin: 0;
+}
+
+.prose .title-repo {
+  margin-left: auto;
+  font-weight: var(--font-weight-regular);
+  white-space: nowrap;
 }
 
 .prose .title .subtitle {
@@ -45,6 +60,19 @@
   font-weight: var(--font-weight-bold);
   line-height: 1.75;
   margin: 3.75em 0 1.75em 0;
+}
+
+.prose h2 {
+  margin-top: 0.85em;
+  margin-bottom: 0.35em;
+}
+
+.prose .content > *:has(+ h2) {
+  margin-bottom: 0;
+}
+
+.prose .content h2 + * {
+  margin-top: 0;
 }
 
 /* Bold text */
@@ -116,6 +144,14 @@
   font-weight: var(--font-weight-bold);
 }
 
+.prose thead tr:first-child th[colspan] {
+  text-align: center;
+}
+
+.prose thead tr:nth-child(2) th {
+  background: transparent;
+}
+
 /* Images */
 .prose img {
   max-width: 100%;
@@ -156,6 +192,54 @@
 .prose figure figcaption {
   color: var(--text-secondary);
   font-size: var(--font-size-s);
+  text-align: center;
+}
+
+.prose .control-flow {
+  margin-top: 1.75em;
+}
+
+.prose .control-flow__steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.prose .control-flow__step {
+  position: relative;
+  width: min(100%, 18rem);
+  padding: 0.45em 0.85em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--astro-code-background);
+  line-height: 1.4;
+  text-align: center;
+}
+
+.prose .control-flow__step span {
+  display: block;
+  margin-top: 0.1em;
+  color: var(--text-secondary);
+  font-size: var(--font-size-s);
+}
+
+.prose .control-flow__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 1.75rem;
+  background: var(--text-tertiary);
+  transform: translateX(-50%);
+}
+
+.prose .control-flow__aside {
+  margin: 1.25em 0 0.35em;
+  color: var(--text-secondary);
+  font-size: var(--font-size-s);
+  line-height: 1.5;
   text-align: center;
 }
 
