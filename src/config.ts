@@ -3,7 +3,7 @@ import type { ThemeConfig } from './types'
 export const themeConfig: ThemeConfig = {
   // SITE INFO ///////////////////////////////////////////////////////////////////////////////////////////
   site: {
-    website: 'https://mathewgaluszka.github.io/',
+    website: 'https://mathewgaluszka.ca/',
     title: 'Mathew Galuszka',
     author: 'Mathew Galuszka',
     description: 'Mechatronics/Biomedical Engineering Student',
