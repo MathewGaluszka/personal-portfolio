@@ -11,6 +11,7 @@ export interface PostLayoutProps {
   subtitle?: string
   dates?: string
   repo?: string
+  repoLabel?: string
   pubDate?: Date
   image?: string
   readingTime?: ReadingTime

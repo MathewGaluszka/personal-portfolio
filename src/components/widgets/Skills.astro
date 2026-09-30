@@ -5,18 +5,22 @@ import { portfolio } from '@/data/portfolio'
 <section class="section skills">
   <h2>Skills</h2>
   <div class="pillars">
-    <div>
-      <h3>Electrical</h3>
-      <p>{portfolio.skills.electrical.join(', ')}</p>
-    </div>
-    <div>
-      <h3>Software</h3>
-      <p>{portfolio.skills.software.join(', ')}</p>
-    </div>
-    <div>
-      <h3>Mechanical</h3>
-      <p>{portfolio.skills.mechanical.join(', ')}</p>
-    </div>
+    {
+      [
+        ['Electrical', portfolio.skills.electrical],
+        ['Software', portfolio.skills.software],
+        ['Mechanical', portfolio.skills.mechanical]
+      ].map(([title, groups]) => (
+        <div>
+          <h3>{title}</h3>
+          {groups.map((group) => (
+            <p>
+              <span class="label">{group.label}:</span> {group.items}
+            </p>
+          ))}
+        </div>
+      ))
+    }
   </div>
 </section>
 
@@ -48,6 +52,11 @@ import { portfolio } from '@/data/portfolio'
   }
 
   .pillars p {
+    margin-top: 0.35rem;
     color: var(--text-primary);
+  }
+
+  .label {
+    font-weight: var(--font-weight-bold);
   }
 </style>

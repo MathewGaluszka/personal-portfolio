@@ -125,7 +125,7 @@ On top of the firmware, I also built a Python-based control panel to test the ar
 
 ## Current Progress And Next Steps
 
-Even though most of the design work is done, there are still some remaining integrations that need to be made. The main one is the doors of the cabinet, which I am currently working on implementing linear actuators to open and close them. I also want to create a proper user interface other than the python control panel, and that is something I am working on alongside the SmartHome Stained Glass Lamps as I am modifying a Wii remote into a smart home controller to be able to control both projects. Overall though, I am incredibly happy with the current progress and it is a joy to see the arm in action moving my disks around.
+Even though most of the design work is done, there are still some remaining integrations that need to be made. The main one is the doors of the cabinet, which I am currently working on implementing linear actuators to open and close them. I also want to create a proper user interface other than the python control panel, and that is something I am working on alongside the SmartHome Stained Glass Lamps as I am modifying a Wii remote into a smart home controller to be able to control both projects. Overall though, I am incredibly happy with the current progress and it is a joy to see the arm in action moving my disks around. For more technical details, as well as access to all of the mechanical, electrical, and software source files to dig through, you can find them at the Github Repo linked at the top of the page.
 
 
 

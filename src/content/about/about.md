@@ -2,7 +2,7 @@
 title: 'About'
 ---
 
-Hello! My name is Mathew, and I'm a final year Mechatronics and Biomedical Engineering student at McMaster University who loves learning how things operate under the hood and using that knowledge to build technology with a purpose.
+Hello! My name is Mathew, and I'm a final year Mechatronics and Biomedical Engineering student at McMaster University who loves learning how things operate under the hood and using that knowledge to build and create anything and everything.
 
 This portfolio spans electrical, mechanical, software, and biomedical applications. It includes personal passion projects, such as a robotic jukebox and custom stained glass lamps with smart home integration, alongside design course projects, such as a convertible walker/wheelchair and a simulated pacemaker.
 

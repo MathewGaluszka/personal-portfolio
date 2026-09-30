@@ -11,8 +11,23 @@ export const portfolio = {
     gpa: '3.8 cGPA'
   },
   skills: {
-    electrical: ['Circuit design', 'Sensors', 'Microcontrollers', 'PCB layout', 'Arduino', 'Power electronics'],
-    software: ['C / C++', 'Python', 'Embedded software', 'React', 'Git', 'MATLAB'],
-    mechanical: ['CAD', '3D printing', 'Mechanisms', 'Prototyping', 'Materials', 'Design for manufacture']
+    electrical: [
+      { label: 'PCB Design and Layout', items: 'KiCad, Altium' },
+      { label: 'Microcontrollers', items: 'STM32, ESP32, Arduino' },
+      { label: 'Circuit Analysis and Simulation', items: 'Multisim, Matlab, Simulink' },
+      { label: 'Circuit Testing', items: 'Scopes, Multimeters' },
+      { label: 'Electrical Assembly and Installation', items: 'Soldering, PCB Assembly, Panel Wiring' }
+    ],
+    software: [
+      { label: 'Languages', items: 'C/C++, Python, Excel VBA' },
+      { label: 'PLC Programming', items: 'Mitsubishi, AB' },
+      { label: 'HMI Design', items: 'Mitsubishi' },
+      { label: 'Data Collection', items: 'ActivPlant, Excel' }
+    ],
+    mechanical: [
+      { label: 'CAD', items: 'Onshape, Inventor, Catia V5' },
+      { label: 'Mechanical Design', items: 'DFM/DFA, GD&T, Static/Dynamic Calculations' },
+      { label: 'Fabrication/Assembly', items: '3D Printing, Machined Part Assembly' }
+    ]
   }
 }

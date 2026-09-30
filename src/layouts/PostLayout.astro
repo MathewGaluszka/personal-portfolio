@@ -18,7 +18,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 import { themeConfig } from '@/config'
 
-const { title, subtitle, dates, repo, toc = [], contentFeatures = {} } = Astro.props as PostLayoutProps
+const { title, subtitle, dates, repo, repoLabel = 'Github Repository', toc = [], contentFeatures = {} } =
+  Astro.props as PostLayoutProps
 
 const postSlug = Astro.url.pathname.split('/').filter(Boolean).pop() || ''
 const ogImage = `/open-graph/${postSlug}.png`
@@ -48,7 +49,7 @@ const shouldRenderLinkCard = themeConfig.post.linkCard && contentFeatures.hasLin
             {
               repo && (
                 <a class="title-repo" href={repo} target="_blank" rel="noreferrer">
-                  Github Repository
+                  {repoLabel}
                 </a>
               )
             }

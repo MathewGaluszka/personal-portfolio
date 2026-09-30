@@ -10,7 +10,8 @@ const posts = defineCollection({
       pubDate: z.coerce.date().optional(),
       order: z.number().optional(),
       image: z.string().optional(),
-      repo: z.string().url().optional()
+      repo: z.string().url().optional(),
+      repoLabel: z.string().optional()
     })
 })
 

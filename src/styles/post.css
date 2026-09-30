@@ -186,7 +186,39 @@
 }
 
 .prose figure img {
+  margin-right: auto;
+  margin-left: auto;
   margin-bottom: 1em;
+}
+
+.prose .image-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+  margin: 2em 0;
+}
+
+.prose .image-row figure {
+  margin: 0;
+}
+
+.prose .image-row figure img {
+  width: 100%;
+  aspect-ratio: 398 / 460;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 0 0.75em;
+}
+
+.prose .image-row .img-caption {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .prose .image-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .prose figure figcaption {

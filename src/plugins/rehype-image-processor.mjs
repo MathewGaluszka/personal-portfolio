@@ -1,4 +1,4 @@
-import { visit } from 'unist-util-visit'
+import { SKIP, visit } from 'unist-util-visit'
 
 function toClassList(value) {
   if (Array.isArray(value)) {
@@ -114,5 +114,55 @@ export default function rehypeImageProcessor() {
         return index + newNodes.length - 1
       }
     })
+
+    visit(tree, 'element', (node) => {
+      if (!node.children?.length) {
+        return
+      }
+
+      if (toClassList(node.properties?.className).includes('image-row')) {
+        return SKIP
+      }
+
+      const grouped = []
+      let index = 0
+
+      while (index < node.children.length) {
+        if (!isCaptionFigure(node.children[index])) {
+          grouped.push(node.children[index])
+          index += 1
+          continue
+        }
+
+        const row = []
+        while (index < node.children.length && isCaptionFigure(node.children[index])) {
+          row.push(node.children[index])
+          index += 1
+        }
+
+        if (row.length > 1) {
+          grouped.push({
+            type: 'element',
+            tagName: 'div',
+            properties: {
+              className: ['image-row']
+            },
+            children: row
+          })
+        } else {
+          grouped.push(row[0])
+        }
+      }
+
+      node.children = grouped
+    })
   }
+}
+
+function isCaptionFigure(node) {
+  return (
+    node?.type === 'element' &&
+    node.tagName === 'figure' &&
+    toClassList(node.properties?.className).includes('image-caption-wrapper')
+  )
 }
