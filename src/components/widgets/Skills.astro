@@ -7,10 +7,10 @@ import { portfolio } from '@/data/portfolio'
   <div class="pillars">
     {
       [
-        ['Electrical', portfolio.skills.electrical],
-        ['Software', portfolio.skills.software],
-        ['Mechanical', portfolio.skills.mechanical]
-      ].map(([title, groups]) => (
+        { title: 'Electrical', groups: portfolio.skills.electrical },
+        { title: 'Software', groups: portfolio.skills.software },
+        { title: 'Mechanical', groups: portfolio.skills.mechanical }
+      ].map(({ title, groups }) => (
         <div>
           <h3>{title}</h3>
           {groups.map((group) => (
