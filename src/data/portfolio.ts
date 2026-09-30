@@ -4,7 +4,7 @@ export const portfolio = {
   email: 'mgaluszka23@gmail.com',
   github: 'https://github.com/MathewGaluszka',
   linkedin: 'https://www.linkedin.com/in/mathew-galuszka-151bb1231',
-  resumePath: '/resume.pdf',
+  resumePath: '/Mathew_Galuszka_Resume.pdf',
   school: {
     name: 'McMaster University',
     year: '5th Year',
